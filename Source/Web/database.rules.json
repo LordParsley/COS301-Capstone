@@ -1,6 +1,12 @@
 {
   "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null"
+    "WorkingFor": {
+      ".read": "true",
+      ".write": "true"
+    },
+    "$uid": {
+      ".read": "auth !== null && (auth.uid === $uid || (data.child('foremen').child(auth.token.phone_number).val() === true))",
+      ".write": "auth !== null && (auth.uid === $uid || (data.child('foremen').child(auth.token.phone_number).val() === true))"
+    }
   }
 }
